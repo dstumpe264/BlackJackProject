@@ -17,8 +17,13 @@ public class Dealer extends Player {
 	//the player will get a second card also face up done in the player
 	// the dealer will get a second card face up, also displayed from the dealer class
 
-	public void dealCards() {
+	//how to seperate this out so that it's in the game driver.
+	public void dealCards(Hand hand) {
 		temp = deck.getCards();
-		Card playersFirstCard = temp.remove(0);
+		Card topCard = temp.remove(0);
+		hand.addCard(topCard);
+		
+		
+		
 	}
 }

@@ -26,10 +26,11 @@ public class Hand {
 		return true;
 	}
 
-	public void addCard() {
+	public void addCard(Card topCard) {
 		temp = new ArrayList<>();
 		temp = deck.getCards();
 		Card c = temp.remove(0);
+		System.out.println(c);
 		hand.add(c);
 	}
 }
