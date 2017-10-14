@@ -4,7 +4,6 @@ import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
 
 public class Dealer extends Player {
-	Deck temp;
 	Deck deck;
 	
 	//dealer has a method to deal cards
