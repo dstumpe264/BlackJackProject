@@ -11,29 +11,24 @@ public class Player {
 	//first off lets make a constructor or two and some getters and setters or whatever
 	public Player() {
 	}
-	
-	
 
 	public Player(String name, Hand hand) {
 		this.name = name;
 		this.hand = hand;
 	}
 	
-	public void getCard() {
-		
-	}
+
 	//my question is how do i transfer it, what do i call the dealers method on? the dealer 
 	// isnt going to have the players hand i cant call it on that. 
 	
-	public boolean displayHand(Hand hand) {
-		boolean hasCards = false;
-		if(hand != null) {
-			hasCards = true;
-		}
-		System.out.println(hand.displayHand());
-		return hasCards;
-		
-	}
+//	public void displayHand(Hand hand) {
+//		boolean hasCards = false;
+//		if(hand != null) {
+//			hasCards = true;
+//		}
+//		System.out.println(hand.displayHand());
+//		
+//	}
 	
 	
 	//how to add to the players hand??

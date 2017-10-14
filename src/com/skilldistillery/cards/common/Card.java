@@ -13,6 +13,13 @@ public class Card {
 	public String toString() {
 		return (rank + " of " + suit).toLowerCase();
 	}
+	public Rank getRank() {
+		return rank;
+	}
+	
+	private Suit getSuit() {
+		return suit;
+	}
 
 	@Override
 	public int hashCode() {
@@ -39,7 +46,4 @@ public class Card {
 		return true;
 	}
 
-	public Rank getRank() {
-		return rank;
-	}
 }

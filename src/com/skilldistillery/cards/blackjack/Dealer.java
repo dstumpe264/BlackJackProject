@@ -1,8 +1,5 @@
 package com.skilldistillery.cards.blackjack;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
 
@@ -17,13 +14,9 @@ public class Dealer extends Player {
 	// the dealer will get a second card face up, also displayed from the dealer class
 
 	//how to seperate this out so that it's in the game driver.
-	public void dealCards(Hand hand, Hand hand2) {
-		deck = new Deck();
-		deck.getCards();
+	public Card dealCard(Deck deck) {
 		Card topCard = deck.remove(0);
-		hand.addCard(topCard);
-		topCard = deck.remove(0);
-		hand2.addCard(topCard);
+		return topCard;
 		
 		
 		
