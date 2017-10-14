@@ -52,7 +52,7 @@ public class blackJackTests {
 	public void test_user_displayHand() {
 		Dealer dealer = new Dealer();
 		Player player = new Player();
-		dealer.dealCards();
+		dealer.dealCards(null, null);
 		assertTrue(player.hand.displayHand());
 		
 	}

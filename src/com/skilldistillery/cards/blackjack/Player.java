@@ -25,14 +25,12 @@ public class Player {
 	//my question is how do i transfer it, what do i call the dealers method on? the dealer 
 	// isnt going to have the players hand i cant call it on that. 
 	
-	public boolean displayHand() {
+	public boolean displayHand(Hand hand) {
 		boolean hasCards = false;
-		hand.addCard();
-		if(hand.toString(0) != null) {
+		if(hand != null) {
 			hasCards = true;
-			
 		}
-		System.out.println(hand);
+		System.out.println(hand.displayHand());
 		return hasCards;
 		
 	}

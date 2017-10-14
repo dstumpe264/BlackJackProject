@@ -7,8 +7,7 @@ import com.skilldistillery.cards.common.Card;
 import com.skilldistillery.cards.common.Deck;
 
 public class Dealer extends Player {
-	List<Card> temp;
-	Hand dealersHand = new Hand();
+	Deck temp;
 	Deck deck;
 	
 	//dealer has a method to deal cards
@@ -18,10 +17,13 @@ public class Dealer extends Player {
 	// the dealer will get a second card face up, also displayed from the dealer class
 
 	//how to seperate this out so that it's in the game driver.
-	public void dealCards(Hand hand) {
-		temp = deck.getCards();
-		Card topCard = temp.remove(0);
+	public void dealCards(Hand hand, Hand hand2) {
+		deck = new Deck();
+		deck.getCards();
+		Card topCard = deck.remove(0);
 		hand.addCard(topCard);
+		topCard = deck.remove(0);
+		hand2.addCard(topCard);
 		
 		
 		

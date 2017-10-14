@@ -17,17 +17,19 @@ public class GameDriver {
 
 	public static void main(String[] args) {
 		//When the game starts it creates a both players and a deck of cards.
+		Deck deck = new Deck();
 		GameDriver game = new GameDriver();
 		Player playerOne = new Player();
 		Dealer dealer = new Dealer();
-		Deck deck = new Deck();
 		//from there the deck gets shuffled and the dealer deals out the cards.
+		deck.getCards();
 		deck.shuffleDeck();
-		dealer.dealCards();
+		dealer.dealCards(playerOne.hand, dealer.hand);
 		playerOne.getCard();
 		dealer.getCard();
-		playerOne.displayHand();
-		dealer.displayHand();
+		System.out.println(playerOne.hand.get(0));
+//		playerOne.displayHand(playerOne.hand.get(0));
+		dealer.displayHand(dealer.hand);
 		
 	}
 
