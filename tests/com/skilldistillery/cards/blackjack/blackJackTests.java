@@ -16,6 +16,9 @@ public class blackJackTests {
 
 	@Before
 	public void setUp() throws Exception {
+		Deck deck = new Deck();
+		deck.shuffleDeck();
+		System.out.println(deck);
 	}
 
 	@After
@@ -38,8 +41,19 @@ public class blackJackTests {
 		System.out.println(deck);
 	}
 	
+//	@Test
+//	public void cards_have_value() {
+//		Dec
+//		
+//		assertTrue();
+//	}
+	
 	@Test
-	public void test_user_gets_hand() {
+	public void test_user_displayHand() {
+		Dealer dealer = new Dealer();
+		Player player = new Player();
+		dealer.dealCards();
+		assertTrue(player.hand.displayHand());
 		
 	}
 

@@ -25,11 +25,14 @@ public class Deck {
 	@Override
 	public String toString() {
 		for(int i=0; i < 52; i++) {
-			System.out.println(""+(i+1)+" "+deck.get(i)+deck.get(i).getRank().getValue());
+			int x = deck.get(i).getRank().getValue();
+			System.out.println(""+(i+1)+" "+deck.get(i)+" "+x);
 		}
 		return "";
-		
-		
+	}
+
+	public List<Card> getCards() {
+		return deck;
 	}
 
 	
