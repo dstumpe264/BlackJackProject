@@ -54,7 +54,7 @@ public class GameDriver {
 		topCard = dealer.dealCard(deck);
 		player.hand.addCard(topCard);
 		System.out.println("\nPlayer's second card is: " + topCard);
-		System.out.println("\nPlayer's has: " + player.hand.getHand());
+		displayHand(player);
 		for (int i = 0; i < player.hand.getHand().size(); i++) {
 			playersTotal += player.hand.getHand().get(i).getRank().getValue();
 		}
@@ -68,8 +68,6 @@ public class GameDriver {
 		topCard = dealer.dealCard(deck);
 		dealer.hand.addCard(topCard);
 		System.out.println("Dealer is showing a " + topCard);
-		System.out.println("Dealer has: " + dealer.hand.getHand()); // here to make sure game logic is correct delete at
-																	// release
 
 	}
 
@@ -99,8 +97,7 @@ public class GameDriver {
 				player.hand.addCard(topCard);
 				int total = 0;
 				System.out.println("You got a " + topCard);
-				System.out.println("=========Player's Cards========");
-				System.out.println(player.hand.getHand());
+				displayHand(player);
 				for (int i = 0; i < player.hand.getHand().size(); i++) {
 					total += player.hand.getHand().get(i).getRank().getValue();
 					if (total > 21) {
@@ -113,14 +110,12 @@ public class GameDriver {
 				System.out.println(total);
 			}
 		} while (c == 'h' || c == 'H');
-		System.out.println("=========Player's Cards========");
-		System.out.println(player.hand.getHand());
+		displayHand(player);
 		System.out.println("\nDealers turn.");
 	}
 
 	void dealersTurn() {
-		System.out.println("Dealer's cards\n");
-		System.out.println(dealer.hand.getHand());
+		displayHand(dealer);
 		for (int i = 0; i < dealer.hand.getHand().size(); i++) {
 			dealersTotal += dealer.hand.getHand().get(i).getRank().getValue();
 		}
@@ -153,5 +148,16 @@ public class GameDriver {
 		}
 			
 		}while (true);
+	}
+	
+	void displayHand(Player whosHand) {
+		if(whosHand == player) {
+			System.out.println("========Player's Hand=========");
+			System.out.println(whosHand.hand.getHand());
+		}
+		else {
+			System.out.println("========Dealer's Hand=========");
+			System.out.println(whosHand.hand.getHand());
+		}
 	}
 }
