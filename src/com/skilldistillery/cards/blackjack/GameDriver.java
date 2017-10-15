@@ -55,10 +55,7 @@ public class GameDriver {
 		player.hand.addCard(topCard);
 		System.out.println("\nPlayer's second card is: " + topCard);
 		displayHand(player);
-		for (int i = 0; i < player.hand.getHand().size(); i++) {
-			playersTotal += player.hand.getHand().get(i).getRank().getValue();
-		}
-		System.out.println("Total value: " + playersTotal);
+		playersTotal = thisPlayersTotal(player);
 		if (playersTotal == 21) {
 			System.out.println("*******BLACKJACK*******");
 			System.out.println("Congrats you won this round");
@@ -95,20 +92,18 @@ public class GameDriver {
 			if (c == 'H' || c == 'h') {
 				topCard = dealer.dealCard(deck);
 				player.hand.addCard(topCard);
-				int total = 0;
 				System.out.println("You got a " + topCard);
 				displayHand(player);
-				for (int i = 0; i < player.hand.getHand().size(); i++) {
-					total += player.hand.getHand().get(i).getRank().getValue();
-					if (total > 21) {
-						System.out.println(total);
-						System.out.println("You bust!!!!");
-						System.exit(0);
-					}
+				playersTotal = thisPlayersTotal(player);
+
+				if (playersTotal > 21) {
+					System.out.println(playersTotal);
+					System.out.println("You bust!!!!");
+					System.exit(0);
 				}
-				playersTotal = total;
-				System.out.println(total);
 			}
+			System.out.println(playersTotal);
+			// }
 		} while (c == 'h' || c == 'H');
 		displayHand(player);
 		System.out.println("\nDealers turn.");
@@ -116,48 +111,60 @@ public class GameDriver {
 
 	void dealersTurn() {
 		displayHand(dealer);
-		for (int i = 0; i < dealer.hand.getHand().size(); i++) {
-			dealersTotal += dealer.hand.getHand().get(i).getRank().getValue();
-		}
-		System.out.println("Total value: " + dealersTotal);
+		dealersTotal = thisPlayersTotal(dealer);
 		do {
-		if (dealersTotal < 17) {
-			dealersTotal = 0;
-			System.out.println("The dealer hits.\n");
-			topCard = dealer.dealCard(deck);
-			dealer.hand.addCard(topCard);
-			System.out.println("Dealer got a " + topCard);
-			for (int i = 0; i < dealer.hand.getHand().size(); i++) {
-				dealersTotal += dealer.hand.getHand().get(i).getRank().getValue();
+			if (dealersTotal < 17) {
+				dealersTotal = 0;
+				System.out.println("The dealer hits.\n");
+				topCard = dealer.dealCard(deck);
+				dealer.hand.addCard(topCard);
+				System.out.println("Dealer got a " + topCard);
+				dealersTotal = thisPlayersTotal(dealer);
+				System.out.println("Dealer's total value: " + dealersTotal);
+			} else if (dealersTotal > 21) {
+				System.out.println("The dealer busts, You win!\n");
+				System.exit(0);
+			} else if (dealersTotal < playersTotal) {
+				System.out.println("You win!");
+				System.out.println(playersTotal + " > " + dealersTotal);
+				System.exit(0);
+			} else if (dealersTotal > playersTotal) {
+				System.out.println("Dealer Wins!");
+				System.out.println(playersTotal + " < " + dealersTotal);
+				System.exit(0);
+			} else {
+				System.out.println("It's a draw!");
+				System.exit(0);
 			}
-			System.out.println("Total value: " + dealersTotal);
-		} else if (dealersTotal > 21) {
-			System.out.println("The dealer busts, You win!\n");
-			System.exit(0);
-		} else if (dealersTotal < playersTotal) {
-			System.out.println("You win!");
-			System.out.println(playersTotal + " > " + dealersTotal);
-			System.exit(0);
-		} else if (dealersTotal > playersTotal) {
-			System.out.println("Dealer Wins!");
-			System.out.println(playersTotal + " < " + dealersTotal);
-			System.exit(0);
-		} else {
-			System.out.println("It's a draw!");
-			System.exit(0);
-		}
-			
-		}while (true);
+
+		} while (true);
 	}
-	
+
 	void displayHand(Player whosHand) {
-		if(whosHand == player) {
-			System.out.println("========Player's Hand=========");
+		if (whosHand == player) {
+			System.out.println("\n===========Player's Hand============");
 			System.out.println(whosHand.hand.getHand());
-		}
-		else {
-			System.out.println("========Dealer's Hand=========");
+			System.out.println("Total: " + thisPlayersTotal(whosHand));
+		} else {
+			System.out.println("\n===========Dealer's Hand============");
 			System.out.println(whosHand.hand.getHand());
+			System.out.println("Total: " + thisPlayersTotal(whosHand));
 		}
 	}
+
+	// here i want to create a method to add the total value. i use the same for
+	// loop in multiple places
+	// worried i'm going to break the code here.
+	// i will need to pass in the which player, his running total, and return and
+	// int
+
+	int thisPlayersTotal(Player whichPlayer) {
+		int runningTotal = 0;
+		for (int i = 0; i < whichPlayer.hand.getHand().size(); i++) {
+			runningTotal += whichPlayer.hand.getHand().get(i).getRank().getValue();
+		}
+
+		return runningTotal;
+	}
+
 }
