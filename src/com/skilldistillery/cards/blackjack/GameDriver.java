@@ -13,6 +13,7 @@ public class GameDriver {
 	Scanner sc;
 	int playersTotal;
 	int dealersTotal;
+	boolean dealersCardsShowing = false;
 	/*
 	 * User Story 2; Add methods and fields to your classes that mimic the
 	 * functionality of shuffling and dealing a deck of cards. Remember that when a
@@ -65,7 +66,13 @@ public class GameDriver {
 		topCard = dealer.dealCard(deck);
 		dealer.hand.addCard(topCard);
 		System.out.println("Dealer is showing a " + topCard);
-
+		dealersTotal = thisPlayersTotal(dealer);
+		if (dealersTotal == 21) {
+			System.out.println("*******BLACKJACK*******");
+			System.out.println("The dealer won this round");
+			System.exit(0);
+		}
+		dealersCardsShowing = true; // to prevent showing the dealers total prematurely
 	}
 
 	// what comes next??
@@ -166,7 +173,9 @@ public class GameDriver {
 		for (int i = 0; i < whichPlayer.hand.getHand().size(); i++) {
 			runningTotal += whichPlayer.hand.getHand().get(i).getRank().getValue();
 		}
-		System.out.println("Total: " + runningTotal);
+		if (dealersCardsShowing) {
+			System.out.println("Total: " + runningTotal);
+		}
 		return runningTotal;
 	}
 
