@@ -35,7 +35,7 @@ public class GameDriver {
 		deck = new Deck();
 		player = new Player();
 		dealer = new Dealer();
-//		System.out.println(deck);
+		// System.out.println(deck);
 		deck.shuffleDeck();
 		System.out.println("The deck has been shuffled.\n");
 	}
@@ -59,7 +59,7 @@ public class GameDriver {
 			playersTotal += player.hand.getHand().get(i).getRank().getValue();
 		}
 		System.out.println("Total value: " + playersTotal);
-		if(playersTotal == 21) {
+		if (playersTotal == 21) {
 			System.out.println("*******BLACKJACK*******");
 			System.out.println("Congrats you won this round");
 			System.exit(0);
@@ -68,8 +68,9 @@ public class GameDriver {
 		topCard = dealer.dealCard(deck);
 		dealer.hand.addCard(topCard);
 		System.out.println("Dealer is showing a " + topCard);
-		System.out.println("Dealer has: " + dealer.hand.getHand()); // here to make sure game logic is correct delete at release
-		
+		System.out.println("Dealer has: " + dealer.hand.getHand()); // here to make sure game logic is correct delete at
+																	// release
+
 	}
 
 	// what comes next??
@@ -102,7 +103,7 @@ public class GameDriver {
 				System.out.println(player.hand.getHand());
 				for (int i = 0; i < player.hand.getHand().size(); i++) {
 					total += player.hand.getHand().get(i).getRank().getValue();
-					if(total > 21) {
+					if (total > 21) {
 						System.out.println(total);
 						System.out.println("You bust!!!!");
 						System.exit(0);
@@ -115,7 +116,7 @@ public class GameDriver {
 		System.out.println(player.hand.getHand());
 		System.out.println("\nDealers turn.");
 	}
-	
+
 	void dealersTurn() {
 		System.out.println("Dealer's cards\n");
 		System.out.println(dealer.hand.getHand());
@@ -123,8 +124,10 @@ public class GameDriver {
 			dealersTotal += dealer.hand.getHand().get(i).getRank().getValue();
 		}
 		System.out.println("Total value: " + dealersTotal);
-		if(dealersTotal < 17) {
+		do {
+		if (dealersTotal < 17) {
 			dealersTotal = 0;
+			System.out.println("The dealer hits.\n");
 			topCard = dealer.dealCard(deck);
 			dealer.hand.addCard(topCard);
 			System.out.println("Dealer got a " + topCard);
@@ -132,12 +135,21 @@ public class GameDriver {
 				dealersTotal += dealer.hand.getHand().get(i).getRank().getValue();
 			}
 			System.out.println("Total value: " + dealersTotal);
-		} else if(dealersTotal < playersTotal) {
+		} else if (dealersTotal > 21) {
+			System.out.println("The dealer busts, You win!\n");
+			System.exit(0);
+		} else if (dealersTotal < playersTotal) {
 			System.out.println("You win!");
-			System.out.println(playersTotal + " > " + dealersTotal );
+			System.out.println(playersTotal + " > " + dealersTotal);
+			System.exit(0);
 		} else if (dealersTotal > playersTotal) {
 			System.out.println("Dealer Wins!");
-			System.out.println(playersTotal + " < " + dealersTotal );
+			System.out.println(playersTotal + " < " + dealersTotal);
+			System.exit(0);
+		} else {
+			System.out.println("It's a draw!");
 		}
+			
+		}while (true);
 	}
 }
