@@ -109,6 +109,7 @@ public class GameDriver {
 						System.exit(0);
 					}
 				}
+				playersTotal = total;
 				System.out.println(total);
 			}
 		} while (c == 'h' || c == 'H');
@@ -148,6 +149,7 @@ public class GameDriver {
 			System.exit(0);
 		} else {
 			System.out.println("It's a draw!");
+			System.exit(0);
 		}
 			
 		}while (true);
