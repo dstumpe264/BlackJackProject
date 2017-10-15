@@ -81,7 +81,7 @@ public class GameDriver {
 		char c = 'x';
 		// Allow player to hit or stay
 		do {
-			System.out.println("Would you like to (H)it or (S)tay?");
+			System.out.println("\nWould you like to (H)it or (S)tay?");
 			input = sc.next();
 			if ((input.equals("S")) || (input.equals("s")) || (input.equals("H")) || (input.equals("h"))) {
 				c = input.charAt(0);
@@ -97,7 +97,7 @@ public class GameDriver {
 				playersTotal = thisPlayersTotal(player);
 
 				if (playersTotal > 21) {
-					System.out.println(playersTotal);
+//					System.out.println(playersTotal);
 					System.out.println("You bust!!!!");
 					System.exit(0);
 				}
@@ -115,21 +115,20 @@ public class GameDriver {
 		do {
 			if (dealersTotal < 17) {
 				dealersTotal = 0;
-				System.out.println("The dealer hits.\n");
+				System.out.println("\nThe dealer hits.\n");
 				topCard = dealer.dealCard(deck);
 				dealer.hand.addCard(topCard);
 				System.out.println("Dealer got a " + topCard);
 				dealersTotal = thisPlayersTotal(dealer);
-				System.out.println("Dealer's total value: " + dealersTotal);
 			} else if (dealersTotal > 21) {
 				System.out.println("The dealer busts, You win!\n");
 				System.exit(0);
 			} else if (dealersTotal < playersTotal) {
-				System.out.println("You win!");
+				System.out.println("\nYou win!");
 				System.out.println(playersTotal + " > " + dealersTotal);
 				System.exit(0);
 			} else if (dealersTotal > playersTotal) {
-				System.out.println("Dealer Wins!");
+				System.out.println("\nDealer Wins!");
 				System.out.println(playersTotal + " < " + dealersTotal);
 				System.exit(0);
 			} else {
@@ -144,27 +143,29 @@ public class GameDriver {
 		if (whosHand == player) {
 			System.out.println("\n===========Player's Hand============");
 			System.out.println(whosHand.hand.getHand());
-			System.out.println("Total: " + thisPlayersTotal(whosHand));
+//			System.out.println("Total: " + thisPlayersTotal(whosHand));
 		} else {
 			System.out.println("\n===========Dealer's Hand============");
 			System.out.println(whosHand.hand.getHand());
-			System.out.println("Total: " + thisPlayersTotal(whosHand));
+//			System.out.println("Total: " + thisPlayersTotal(whosHand));
 		}
 	}
 
 	// here i want to create a method to add the total value. i use the same for
 	// loop in multiple places
 	// worried i'm going to break the code here.
-	// i will need to pass in the which player, his running total, and return and
-	// int
+	// i will need to pass in the which player, his running total, and return an int
 
 	int thisPlayersTotal(Player whichPlayer) {
 		int runningTotal = 0;
 		for (int i = 0; i < whichPlayer.hand.getHand().size(); i++) {
 			runningTotal += whichPlayer.hand.getHand().get(i).getRank().getValue();
 		}
-
+		System.out.println("Total: " + runningTotal);
 		return runningTotal;
 	}
+	
+	// this next method will be used to determine the winner, it will take in the value and run through 
+	//the possible conditions, busts, draw, etc. possibly
 
 }
