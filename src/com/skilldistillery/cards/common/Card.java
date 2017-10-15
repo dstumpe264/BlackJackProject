@@ -11,13 +11,20 @@ public class Card {
 
 	@Override
 	public String toString() {
-		return (rank + " of " + suit).toLowerCase();
+		return (rank + " of " + this.getSuit().getChar() + " " + suit + " " + this.getSuit().getChar()).toLowerCase();
 	}
+	public String displayCard() {
+		return ("--------------\n| " + this.getSuit().getChar() + "        " + this.getSuit().getChar() + " |\n" +
+				"| " + getRank() + " " + getRank() + " |\n" +
+				"| "+ this.getSuit().getChar() + "        " + this.getSuit().getChar() + " |\n" +
+				"--------------");
+	}
+	
 	public Rank getRank() {
 		return rank;
 	}
 	
-	private Suit getSuit() {
+	public Suit getSuit() {
 		return suit;
 	}
 

@@ -24,6 +24,7 @@ public class Deck {
 	public String toString() {
 		for (int i = 0; i < deck.size(); i++) {
 			int x = deck.get(i).getRank().getValue();
+			char c = deck.get(i).getSuit().getChar();
 			System.out.println("" + (i + 1) + " " + deck.get(i) + " " + x);
 		}
 		return "";

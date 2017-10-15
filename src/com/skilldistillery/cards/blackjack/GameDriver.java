@@ -97,7 +97,7 @@ public class GameDriver {
 				playersTotal = thisPlayersTotal(player);
 
 				if (playersTotal > 21) {
-//					System.out.println(playersTotal);
+					// System.out.println(playersTotal);
 					System.out.println("You bust!!!!");
 					System.exit(0);
 				}
@@ -142,12 +142,17 @@ public class GameDriver {
 	void displayHand(Player whosHand) {
 		if (whosHand == player) {
 			System.out.println("\n===========Player's Hand============");
-			System.out.println(whosHand.hand.getHand());
-//			System.out.println("Total: " + thisPlayersTotal(whosHand));
+			// System.out.println(whosHand.hand.getHand());
+
+			// System.out.println("Total: " + thisPlayersTotal(whosHand));
 		} else {
 			System.out.println("\n===========Dealer's Hand============");
-			System.out.println(whosHand.hand.getHand());
-//			System.out.println("Total: " + thisPlayersTotal(whosHand));
+			// System.out.println("Total: " + thisPlayersTotal(whosHand));
+		}
+		System.out.println(whosHand.hand.getHand());
+		for (int i = 0; i < whosHand.hand.getHand().size(); i++) {
+			System.out.print(whosHand.hand.getHand().get(i).displayCard() + "\n");
+
 		}
 	}
 
@@ -164,8 +169,9 @@ public class GameDriver {
 		System.out.println("Total: " + runningTotal);
 		return runningTotal;
 	}
-	
-	// this next method will be used to determine the winner, it will take in the value and run through 
-	//the possible conditions, busts, draw, etc. possibly
+
+	// this next method will be used to determine the winner, it will take in the
+	// value and run through
+	// the possible conditions, busts, draw, etc. possibly
 
 }
